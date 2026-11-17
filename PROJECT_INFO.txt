@@ -1,0 +1,58 @@
+==================================================
+PDFAI — AI-Powered PDF Intelligence
+==================================================
+App name        : PDFAI
+Version         : 0.1.0 (versionCode 1)
+Phase           : 1 — Foundation
+Created         : 2026-11-17 07:43 (Asia/Amman, UTC+03:00)
+Platform        : Android (Kotlin + Jetpack Compose)
+Package (draft) : com.pdfai.app   [TODO: confirm before the first Play upload]
+
+WHAT THIS VERSION CONTAINS
+--------------------------
+New:
+- Android project skeleton (single :app module, Gradle Kotlin DSL, version catalog).
+- Approved visual identity as a theme: palette, typography scale, shapes, spacing.
+- Arabic (RTL) and English (LTR) resources; per-app language list (ar, en).
+- First draft launcher icon (adaptive + monochrome): one PDF page with the AI chip merged in it.
+- Minimal shell screen showing only name + tagline. No fake tools, buttons or results.
+
+Improvements: none (first version).
+Fixes: none (first version).
+
+NOT in this version (by design)
+-------------------------------
+- Home screen, file picker, processing pipeline, results, history (Phase 2+).
+- Ads / usage-hour system (Start.io) — no INTERNET permission yet.
+- Any AI, OCR, translation or PDF processing.
+
+TOOLCHAIN (checked against official Android/Jetpack pages on 2026-11-17)
+-------------------------------------------------------------------------
+- Android Gradle Plugin 9.2.1 (needs Gradle 9.4.1 or newer, JDK 17+; Kotlin is built into AGP 9)
+- Kotlin / Compose compiler plugin 2.3.10
+- Compose BOM 2026.08.00 (Compose 1.12 requires compileSdk 37 and AGP 9.1.1+)
+- androidx.activity:activity-compose 1.13.0
+- compileSdk 37, targetSdk 36, minSdk 26
+
+BUILD STATUS
+------------
+NOT compiled yet: the authoring environment had no Android SDK or network.
+Checked only: all XML files are well-formed; Kotlin brace/paren balance.
+The Gradle wrapper script and jar are not included (they cannot be generated offline);
+only gradle/wrapper/gradle-wrapper.properties is included. Run `gradle wrapper` once or
+let Android Studio / CI download Gradle 9.4.1.
+
+OPEN TODOs
+----------
+- Confirm applicationId / namespace.
+- Verify Google Play's current target API requirement before publishing.
+- Bundle the approved Arabic + Latin font (check its license).
+- Add a dark theme only if requested.
+- Decide the release signing setup.
+
+DECISIONS FOLLOWED (approved)
+-----------------------------
+- Palette: #F6F8FB, #FFFFFF, #356B9A, #203D5A, #35A6A0, #EAF2F9, #65A987, #293747, #8491A0, #E5EAF0.
+- Derived colors (approved with the design concept): #637184 (small secondary text), purple #7B6BB5,
+  orange #C26A22, error #B5524A, plus deeper glyph shades for turquoise/green tiles.
+- No fake IDs, no fake results. Work proceeds in small phases; next phase starts only after "أكمل".

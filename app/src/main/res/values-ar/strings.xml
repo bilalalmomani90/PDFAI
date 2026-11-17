@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PDFAI</string>
+    <string name="app_tagline">AI-Powered PDF Intelligence</string>
+    <string name="phase_notice">نسخة الأساس (المرحلة 1). الشاشة الرئيسية ومسار المعالجة يأتيان في المراحل التالية.</string>
+</resources>

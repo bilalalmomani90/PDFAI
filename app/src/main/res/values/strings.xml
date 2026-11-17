@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PDFAI</string>
+    <string name="app_tagline">AI-Powered PDF Intelligence</string>
+    <string name="phase_notice">Foundation build (Phase 1). The home screen and the processing pipeline arrive in the next phases.</string>
+</resources>
