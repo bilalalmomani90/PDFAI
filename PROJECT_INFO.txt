@@ -2,57 +2,45 @@
 PDFAI — AI-Powered PDF Intelligence
 ==================================================
 App name        : PDFAI
-Version         : 0.1.0 (versionCode 1)
-Phase           : 1 — Foundation
-Created         : 2026-11-17 07:43 (Asia/Amman, UTC+03:00)
+Version         : 0.1.1 (versionCode 2)
+Phase           : 1 — Foundation (build pipeline added)
+Created         : 2026-11-18 11:43 (Asia/Amman, UTC+03:00)
+Previous        : 0.1.0 (2026-11-17 07:43)
 Platform        : Android (Kotlin + Jetpack Compose)
 Package (draft) : com.pdfai.app   [TODO: confirm before the first Play upload]
 
-WHAT THIS VERSION CONTAINS
---------------------------
+WHAT CHANGED IN 0.1.1
+---------------------
 New:
-- Android project skeleton (single :app module, Gradle Kotlin DSL, version catalog).
-- Approved visual identity as a theme: palette, typography scale, shapes, spacing.
-- Arabic (RTL) and English (LTR) resources; per-app language list (ar, en).
-- First draft launcher icon (adaptive + monochrome): one PDF page with the AI chip merged in it.
-- Minimal shell screen showing only name + tagline. No fake tools, buttons or results.
+- GitHub Actions workflow (.github/workflows/build-apk.yml) that builds a debug APK on GitHub's
+  free runners and publishes it as a downloadable artifact (usable from a phone).
 
-Improvements: none (first version).
-Fixes: none (first version).
+Improvements: none.
+Fixes: 0.1.0 shipped source only (no APK); this version adds the way to build one.
 
-NOT in this version (by design)
--------------------------------
-- Home screen, file picker, processing pipeline, results, history (Phase 2+).
-- Ads / usage-hour system (Start.io) — no INTERNET permission yet.
-- Any AI, OCR, translation or PDF processing.
+CARRIED FROM 0.1.0
+------------------
+- Android project skeleton, approved palette theme, Arabic (RTL) + English (LTR) resources,
+  first-draft adaptive/monochrome launcher icon, minimal shell screen (name + tagline only).
+- Not included yet: home screen, file picker, processing pipeline, results, history, ads/usage hours.
 
-TOOLCHAIN (checked against official Android/Jetpack pages on 2026-11-17)
--------------------------------------------------------------------------
-- Android Gradle Plugin 9.2.1 (needs Gradle 9.4.1 or newer, JDK 17+; Kotlin is built into AGP 9)
-- Kotlin / Compose compiler plugin 2.3.10
-- Compose BOM 2026.08.00 (Compose 1.12 requires compileSdk 37 and AGP 9.1.1+)
-- androidx.activity:activity-compose 1.13.0
+TOOLCHAIN (checked against official pages on 2026-11-17; CI action versions from public repos)
+---------------------------------------------------------------------------------------------
+- Android Gradle Plugin 9.2.1 (Gradle 9.4.1+, JDK 17+; Kotlin built into AGP 9)
+- Kotlin / Compose compiler plugin 2.3.10; Compose BOM 2026.08.00; activity-compose 1.13.0
 - compileSdk 37, targetSdk 36, minSdk 26
+- CI: actions/checkout@v6, actions/setup-java@v5 (JDK 21), gradle/actions/setup-gradle@v6,
+  actions/upload-artifact@v6
 
 BUILD STATUS
 ------------
-NOT compiled yet: the authoring environment had no Android SDK or network.
-Checked only: all XML files are well-formed; Kotlin brace/paren balance.
-The Gradle wrapper script and jar are not included (they cannot be generated offline);
-only gradle/wrapper/gradle-wrapper.properties is included. Run `gradle wrapper` once or
-let Android Studio / CI download Gradle 9.4.1.
+NOT compiled or run yet: the authoring environment has no Android SDK and no network.
+The first CI run may fail and need small fixes — send the error text and it will be fixed.
 
-OPEN TODOs
-----------
-- Confirm applicationId / namespace.
-- Verify Google Play's current target API requirement before publishing.
-- Bundle the approved Arabic + Latin font (check its license).
-- Add a dark theme only if requested.
-- Decide the release signing setup.
-
-DECISIONS FOLLOWED (approved)
------------------------------
-- Palette: #F6F8FB, #FFFFFF, #356B9A, #203D5A, #35A6A0, #EAF2F9, #65A987, #293747, #8491A0, #E5EAF0.
-- Derived colors (approved with the design concept): #637184 (small secondary text), purple #7B6BB5,
-  orange #C26A22, error #B5524A, plus deeper glyph shades for turquoise/green tiles.
-- No fake IDs, no fake results. Work proceeds in small phases; next phase starts only after "أكمل".
+KNOWN LIMITS / TODO
+-------------------
+- Debug APKs are signed with a fresh key on every CI run: install a new build only after
+  uninstalling the old one. A fixed signing key is needed before real data must survive updates.
+- Check GitHub Actions free-minute limits for your repository type (public/private) and keep the
+  spending limit at 0 before relying on this workflow. [not verified]
+- Confirm applicationId; verify Google Play's target API requirement; bundle the approved font.

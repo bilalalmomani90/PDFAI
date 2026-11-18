@@ -4,8 +4,8 @@ plugins {
 }
 
 // Version is bumped on every release. Keep PROJECT_INFO.txt in sync.
-val appVersionName = "0.1.0"
-val appVersionCode = 1
+val appVersionName = "0.1.1"
+val appVersionCode = 2
 
 android {
     // TODO: confirm the final applicationId before the first Play Store upload.
