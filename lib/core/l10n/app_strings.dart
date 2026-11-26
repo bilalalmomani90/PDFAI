@@ -37,6 +37,7 @@ class AppStrings {
       'deleteConfirm': 'سيُحذف الملف وجميع نتائجه المحفوظة. هل أنت متأكد؟',
       'cancel': 'إلغاء',
       'delete': 'حذف',
+      'ocrFailed': 'تعذّر تشغيل OCR على هذا الملف.',
     },
     'en': {
       'appName': 'PDFAI',
@@ -60,6 +61,7 @@ class AppStrings {
       'deleteConfirm': 'The file and all its saved results will be deleted. Are you sure?',
       'cancel': 'Cancel',
       'delete': 'Delete',
+      'ocrFailed': "OCR couldn't run on this file.",
     },
   };
 
@@ -87,6 +89,74 @@ class AppStrings {
   String get deleteConfirm => _t('deleteConfirm');
   String get cancel => _t('cancel');
   String get delete => _t('delete');
+  String get ocrFailed => _t('ocrFailed');
+
+  String runOcr(int n) =>
+      _ar ? 'تشغيل OCR على ${pagesLabel(n)}' : 'Run OCR on ${pagesLabel(n)}';
+
+  String ocrRunning(int done, int total) => _ar
+      ? 'جارٍ التعرّف على النص: $done من $total'
+      : 'Recognizing text: $done of $total';
+
+  String ocrPages(int n) => _ar ? 'صفحات تم التعرّف عليها (OCR): $n' : 'OCR pages: $n';
+
+  String ocrFailedPages(int n) =>
+      _ar ? 'صفحات فشل OCR فيها: $n' : 'Pages where OCR failed: $n';
+
+  String ocrModelsMissing(List<String> names) => _ar
+      ? 'نماذج OCR غير موجودة: ${names.join('، ')}. أضف ملفاتها إلى assets/tessdata ثم أعد بناء التطبيق.'
+      : 'OCR models missing: ${names.join(', ')}. Add them to assets/tessdata and rebuild the app.';
+
+  String get analyzeDocument => _ar ? 'تحليل المستند' : 'Analyze document';
+  String get analysisFailed =>
+      _ar ? 'تعذّر تحليل المستند.' : "Couldn't analyze the document.";
+  String analyzing(int done, int total) =>
+      _ar ? 'جارٍ التحليل: $done من $total' : 'Analyzing: $done of $total';
+  String get analysisTitle => _ar ? 'تحليل المستند' : 'Document analysis';
+  String languageLine(String code) =>
+      _ar ? 'اللغة: ${languageName(code)}' : 'Language: ${languageName(code)}';
+  String typeLine(String type) =>
+      _ar ? 'النوع: ${docTypeName(type)}' : 'Type: ${docTypeName(type)}';
+  String topicLine(List<String> k) => _ar
+      ? 'أبرز الموضوعات: ${k.join('، ')}'
+      : 'Main topics: ${k.join(', ')}';
+  String chaptersLine(int n) =>
+      _ar ? 'الفصول والأقسام: $n' : 'Chapters / parts: $n';
+  String get reversedFixedLine => _ar
+      ? 'تم تصحيح ترتيب النص العربي المعكوس.'
+      : 'Reversed Arabic text order was corrected.';
+
+  String languageName(String code) {
+    const ar = {
+      'ar': 'العربية', 'fa': 'الفارسية', 'ur': 'الأردية', 'en': 'الإنجليزية',
+      'fr': 'الفرنسية', 'es': 'الإسبانية', 'de': 'الألمانية', 'it': 'الإيطالية',
+      'pt': 'البرتغالية', 'tr': 'التركية', 'ru': 'الروسية', 'he': 'العبرية',
+      'hi': 'الهندية', 'zh': 'الصينية', 'ja': 'اليابانية', 'ko': 'الكورية',
+      'el': 'اليونانية',
+    };
+    const en = {
+      'ar': 'Arabic', 'fa': 'Persian', 'ur': 'Urdu', 'en': 'English',
+      'fr': 'French', 'es': 'Spanish', 'de': 'German', 'it': 'Italian',
+      'pt': 'Portuguese', 'tr': 'Turkish', 'ru': 'Russian', 'he': 'Hebrew',
+      'hi': 'Hindi', 'zh': 'Chinese', 'ja': 'Japanese', 'ko': 'Korean',
+      'el': 'Greek',
+    };
+    return (_ar ? ar : en)[code] ?? (_ar ? 'غير محددة' : 'Unknown');
+  }
+
+  String docTypeName(String type) {
+    const ar = {
+      'academic': 'بحث أكاديمي', 'book': 'كتاب', 'report': 'تقرير',
+      'invoice': 'فاتورة', 'contract': 'عقد', 'exam': 'اختبار',
+      'presentation': 'عرض تقديمي', 'manual': 'دليل استخدام',
+    };
+    const en = {
+      'academic': 'Academic paper', 'book': 'Book', 'report': 'Report',
+      'invoice': 'Invoice', 'contract': 'Contract', 'exam': 'Exam',
+      'presentation': 'Presentation', 'manual': 'Manual',
+    };
+    return (_ar ? ar : en)[type] ?? (_ar ? 'مستند عام' : 'General document');
+  }
 
   String pagesLabel(int n) {
     if (!_ar) return n == 1 ? '1 page' : '$n pages';

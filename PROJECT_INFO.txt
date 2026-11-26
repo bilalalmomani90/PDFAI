@@ -1,6 +1,6 @@
 App Name: PDFAI
 Package Name: com.aipdf.app
-Version: 0.3.0
-Build Number: 3
-Stage: 3 - PDF reading and text extraction
-Created: 2026-11-15 09:20 (UTC+03:00, Asia/Amman)
+Version: 0.5.0
+Build Number: 5
+Stage: 5 - Language detection, Arabic normalization, classification, chapters
+Created: 2026-11-25 18:12 (UTC+03:00, Asia/Amman; taken from the build machine clock)

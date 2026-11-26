@@ -18,3 +18,10 @@ Never change the package name after it is approved.
 pdfrx compiles a small native library: install the NDK and CMake from
 Android Studio > SDK Manager > SDK Tools before the first build.
 After `flutter pub get`, check the pdfrx version in pubspec.lock and tell Claude if a build error mentions pdfrx.
+
+## OCR models (stage 4) - required once
+Download these two files from https://github.com/tesseract-ocr/tessdata_fast (folder root)
+and place them in assets/tessdata/ :
+  ara.traineddata
+  eng.traineddata
+(tessdata_fast = small and quick, good for mid/low-end phones. tessdata_best is more accurate but slower and larger.)

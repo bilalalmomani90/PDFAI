@@ -86,4 +86,34 @@ class DocumentsRepository {
             r['c'] as int,
     };
   }
+
+  /// Pages that still need OCR, in order.
+  Future<List<int>> pendingOcrPageNumbers(String documentId) async {
+    final rows = await _db.query(
+      'pages',
+      columns: ['page_number'],
+      where: 'document_id = ? AND method = ?',
+      whereArgs: [documentId, PageMethod.pendingOcr.name],
+      orderBy: 'page_number',
+    );
+    return rows.map((r) => r['page_number'] as int).toList();
+  }
+
+  /// Original text of each page (before normalization), in page order.
+  Future<List<MapEntry<int, String>>> rawTexts(String documentId) async {
+    final rows = await _db.rawQuery(
+      'SELECT page_number, COALESCE(raw_text, text) AS t FROM pages '
+      'WHERE document_id = ? ORDER BY page_number',
+      [documentId],
+    );
+    return [for (final r in rows) MapEntry(r['page_number'] as int, r['t'] as String)];
+  }
+
+  /// Replaces a page's text, keeping the original in raw_text (first change only).
+  Future<void> updatePageText(String documentId, int pageNumber, String text) =>
+      _db.rawUpdate(
+        'UPDATE pages SET raw_text = COALESCE(raw_text, text), text = ? '
+        'WHERE document_id = ? AND page_number = ?',
+        [text, documentId, pageNumber],
+      );
 }
